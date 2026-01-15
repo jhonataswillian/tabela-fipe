@@ -31,7 +31,6 @@ public class Principal {
         var opcao = scanner.nextLine();
 
         String endereco;
-
         if (opcao.toLowerCase().contains("carr")) {
             endereco = URL_BASE + "carros/marcas";
         } else if (opcao.toLowerCase().contains("mot")) {
@@ -45,7 +44,6 @@ public class Principal {
 
         var json = consumoApi.obterDados(endereco);
         System.out.println(json);
-
         var marcas = converteDados.obterDados(json, Dados[].class);
 
         for (Dados marca : marcas) {
@@ -57,7 +55,6 @@ public class Principal {
 
         endereco = endereco + "/" + codigoMarca + "/modelos";
         json = consumoApi.obterDados(endereco);
-
         var modeloLista = converteDados.obterDados(json, Modelos.class);
 
         System.out.println("\nModelos dessa marca: ");
@@ -78,11 +75,9 @@ public class Principal {
 
         endereco = endereco + "/" + codigoModelo + "/anos";
         json = consumoApi.obterDados(endereco);
-
         var anos = converteDados.obterDados(json, Dados[].class);
 
         List<Veiculo> veiculos = new ArrayList<>();
-
         for (Dados ano : anos) {
             var enderecoAno = endereco + "/" + ano.codigo();
             json = consumoApi.obterDados(enderecoAno);
